@@ -2,11 +2,12 @@ import React, {FC} from 'react';
 import {Layout, Menu, Row} from "antd";
 import {useHistory} from "react-router-dom";
 import {RouteNames} from "src/route/index";
+import {useTypedSelector} from "src/hooks/useTypedSelector";
 
 const NavBar: FC = () => {
    const router = useHistory();
 
-   const auth = false
+   const {isAuth} = useTypedSelector(state => state.authReducer)
    return (
       <Layout.Header>
          <Row justify={"end"}>
@@ -16,7 +17,7 @@ const NavBar: FC = () => {
                selectable={false}
             >
                {
-                  auth
+                  isAuth
                      ?
                      <>
                         <div style={{color: "white"}}>Алексей</div>
