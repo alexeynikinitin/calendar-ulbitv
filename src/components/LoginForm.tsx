@@ -1,20 +1,17 @@
 import React, {FC, useState} from 'react';
 import {Button, Card, Form, Input} from "antd";
 import rules from "../utils/rules";
-import {useDispatch} from "react-redux";
-import {thunkCreators} from "src/store/reducers/auth/action-creators";
 import {useTypedSelector} from "src/hooks/useTypedSelector";
+import {useAction} from "src/hooks/useAction";
 
 const LoginForm: FC = () => {
-   const dispatch = useDispatch();
+   const {login} = useAction()
    const {errorMessage, isLoading} = useTypedSelector(state => state.authReducer)
 
    const [username, setUsername] = useState('')
    const [password, setPassword] = useState('')
 
-   const submit = () => {
-      dispatch(thunkCreators.login(username, password))
-   }
+   const submit = () => login(username, password)
 
    return (
       <Card>

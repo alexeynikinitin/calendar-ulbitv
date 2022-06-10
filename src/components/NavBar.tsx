@@ -3,17 +3,12 @@ import {Layout, Menu, Row} from "antd";
 import {useHistory} from "react-router-dom";
 import {RouteNames} from "src/route/index";
 import {useTypedSelector} from "src/hooks/useTypedSelector";
-import {useDispatch} from "react-redux";
-import {thunkCreators} from "src/store/reducers/auth/action-creators";
+import {useAction} from "src/hooks/useAction";
 
 const NavBar: FC = () => {
    const router = useHistory();
-   const dispatch = useDispatch();
+   const {logout} = useAction();
    const {isAuth, user} = useTypedSelector(state => state.authReducer)
-
-   const logout = () => {
-      dispatch(thunkCreators.logout())
-   }
 
    return (
       <Layout.Header>
